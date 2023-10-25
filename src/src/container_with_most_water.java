@@ -10,40 +10,43 @@ public class container_with_most_water {
 
     static class Solution {
         public int maxArea(int[] height) {
-            int max = -1;
-//            for (int i = 0; i < height.length; ++i) {
-//                for (int j = i + 1; j < height.length; ++j) {
-//                    int sum = (j - i) * Math.min(height[j], height[i]);
-//                    if (sum > max)
-//                        max = sum;
-//
-//                }
-//            }
-//            int []sum = new int[height.length];
-//            sum[0] = height[0];
-            int target = -1;
-            int max_height = height[0];
-            int max_height_idx = 0;
-            for (int i = 1; i < height.length; ++i) {
-//                sum[i] = i * height[i];
+            int max = 1;
+            for (int i = 0; i < height.length; ++i) {
+                if(height[i] != 0) {
+                    for (int j = i + (height[i] == 0 ? 1 : max / height[i]); j < height.length; ++j) {
+                        int sum = (j - i) * Math.min(height[j], height[i]);
+                        if (sum > max)
+                            max = sum;
 
-                int n = Math.min(height[i], height[max_height_idx]) * (i - max_height_idx);
-                if (n >= max) {
-                    max = n;
-                    target = i;
+                    }
                 }
-                if (max_height > height[i]) {
-                    max_height_idx = i;
-                    max_height = height[i];
-                }
-            }
-            max = -1;
-            for (int i = 0; i < target; ++i) {
-                int ss = (target - i) * Math.min(height[target], height[i]);
-                if (ss > max)
-                    max = ss;
             }
             return max;
         }
     }
+////            int []sum = new int[height.length];
+////            sum[0] = height[0];
+//            int target = -1;
+//            int max_height = height[0];
+//            int max_height_idx = 0;
+//            for (int i = 1; i < height.length; ++i) {
+////                sum[i] = i * height[i];
+//
+//                int n = Math.min(height[i], height[max_height_idx]) * (i - max_height_idx);
+//                if (n >= max) {
+//                    max = n;
+//                    target = i;
+//                }
+//                if (max_height > height[i]) {
+//                    max_height_idx = i;
+//                    max_height = height[i];
+//                }
+//            }
+//            max = -1;
+//            for (int i = 0; i < target; ++i) {
+//                int ss = (target - i) * Math.min(height[target], height[i]);
+//                if (ss > max)
+//                    max = ss;
+//            }
+
 }
